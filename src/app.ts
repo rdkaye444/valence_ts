@@ -9,7 +9,7 @@ const app: express.Application = express();
 
  
 // Take a port 3000 for running server.
-const port: number = 3000;
+const port: number = 3001;
  
 // Handling '/' Request
 app.get('/', (_req, _res) => {
@@ -17,8 +17,10 @@ app.get('/', (_req, _res) => {
 });
  
 // Handling the base element request
-app.get('/data/:selectedelement', (_req, _res) => {
-    _res.send(elements.elements.filter((element) => element['symbol']==_req.params.selectedelement))
+app.get('/data/:selectedElement', (_req, _res) => {
+    console.log(`Request for ${_req.params.selectedElement} received`)
+    _res.set('Access-Control-Allow-Origin', '*');
+    _res.send(elements.elements.filter((element) => element['symbol']==_req.params.selectedElement))
 });
 
 
